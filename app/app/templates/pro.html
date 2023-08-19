@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static', filename ='pro.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'pro.css') }}">
+    <title>Dr Green</title>
+</head>
+
+<body>
+    <div>
+        <form action="" class="container" id="form" method="POST" enctype="multipart/form-data">
+
+
+            <div class="envoi">
+                <div class="image">
+
+                    <label for="image" style="cursor: pointer;">
+                        <img class="icone" src="static/upl.png" alt="upload" >
+                    </label><br>
+                    <input type="file" name="file" accept="image/*" id="image" onchange="Charger()" style="display: none;">
+                    <img id="affichage" width="100px">
+
+
+                </div>
+                <input type="submit" value="Chargez votre image">
+                <h1> {{ prediction }}</h1>
+
+            </div>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
