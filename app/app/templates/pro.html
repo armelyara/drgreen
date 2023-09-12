@@ -11,28 +11,50 @@
 
 <body>
     <div>
-        <form action="" class="container" id="form" method="POST" enctype="multipart/form-data">
+        <form action="/upload" class="container" id="form" method="POST" enctype="multipart/form-data">
 
 
             <div class="envoi">
                 <div class="image">
-
-                    <label for="image" style="cursor: pointer;">
-                        <img class="icone" src="static/upl.png" alt="upload" >
-                    </label><br>
-                    <input type="file" name="file" accept="image/*" id="image" onchange="Charger()" style="display: none;">
-                    <img id="affichage" width="100px">
-
-
+                    <input type="file" name="file" accept=".jpg, .jpeg, .png">
+                    <br><br>
+                    <img id="preview" src="" alt="Preview Image" style="display: none; max-width: 300px; max-height: 300px;">
+                    <br><br>
                 </div>
-                <input type="submit" value="Chargez votre image">
-                <h1> {{ prediction }}</h1>
+                <input type="submit" value="Recognize">
+                <h1>Prediction: {{ prediction }}</h1>
+                <!-- Display additional information based on the recognized label -->
+                {% if display_name %}
+                <h2>Additional Information:</h2>
+                <p><strong>Display Name:</strong> {{ display_name }}</p>
+                <p><strong>Scientific Name:</strong> {{ scientific_name }}</p>
+                <p><strong>Common Name:</strong> {{ common_name }}</p>
+                <p><strong>Disease Treated:</strong> {{ disease_treated }}</p>
+                <p><strong>Dosage:</strong> {{ dosage }}</p>
+                {% endif %}
 
             </div>
         </form>
 
     </div>
 
+<script>
+    document.querySelector('input[type="file"]').addEventListener('change', function (){
+        const preview = document.querySelector('#preview');
+        const file = this.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function () {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+
+        });
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 </body>
 
 </html>
