@@ -7,15 +7,6 @@ from app import app
 from werkzeug.utils import secure_filename
 
 
-#credential_path = "/root/dr Green-20220425T160012Z-001/app/app/dr-green-330509-037bf21e37c1.json"
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= credential_path
-
-
-#project: str="dr-green-330509"
-#endpoint_id: str="3202314421758066688"
-#filename: str="/root/dr Green-20220425T160012Z-001/dr Green/feuilles-de-papayer.jpg"
-#location: str= "us-central1"
-#api_endpoint: str= "us-central1-aiplatform.googleapis.com"
 
 UPLOAD_FOLDER = os.path.basename('./static')
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
@@ -32,17 +23,28 @@ def index():
 
  
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def pred():
     
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "D:/python tuto/dr Green-20220425T160012Z-001/app/traffic-day-d7d89113f8b7.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "API KEY"
 
 
-    project: str="traffic-day"
-    endpoint_id: str="2810980641246543872"
-    filename: str= "D:/python tuto/dr Green-20220425T160012Z-001/app/app/artemisia.jpg"
-    location: str= "us-central1"
-    api_endpoint: str= "us-central1-aiplatform.googleapis.com"
+    project: str=""
+    endpoint_id: str=""
+    location: str= ""
+    api_endpoint: str= ""
+    
+    if 'file' not in request.files:
+        return redirect(request.url)
+    file  = request.files['file']
+    if file.filename == '' :
+        return redirect(request.url)
+    if file:
+        #save the uploaded image
+        upload_dir = 'PATH'
+        image_path = os.path.join(upload_dir, file.filename)
+        file.save(image_path)
+        
 
 
     # The AI Platform services require regional API endpoints.
@@ -50,7 +52,7 @@ def pred():
     # Initialize client that will be used to create and send requests.
     # This client only needs to be created once, and can be reused for multiple requests.
     client = aiplatform.gapic.PredictionServiceClient(client_options=client_options)
-    with open(filename, "rb") as f:
+    with open(image_path, "rb") as f:
         file_content = f.read()
     
     
@@ -74,13 +76,12 @@ def pred():
     )
     print("response")
     print(" deployed_model_id:", response.deployed_model_id)
-    # See gs://google-cloud-aiplatform/schema/predict/prediction/image_classification_1.0.0.yaml for the format of the predictions.
+    
+    #Show prediction parameters on the web page
     predictions = response.predictions
-    #for prediction in predictions:
-    #    print(dict(prediction))
-    #print (list(dict(predictions.items())))
     prediction = [dict(prediction) for prediction in predictions]
     print(prediction [0]['ids'][0])
     return render_template('pro.html', prediction = prediction)
+
     
     
