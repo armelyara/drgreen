@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static', filename ='pro.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'pro.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'footer.css') }}">
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <title>Dr Green</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = '002.ico') }}">
+   
+</head>
+
+<body>
+    <div>
+        <form action="/upload" class="container" id="form" method="POST" enctype="multipart/form-data">
+
+
+            <div class="envoi">
+                <div class="file-upload">
+                
+                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )", name="file">Add
+                        Image</button>
+                
+                    <div class="file-upload-placeholder">
+                        <input class="file-upload-input" type='file' name="file" onchange="readURL(this);" accept=".jpg, .jpeg, .png" />
+                        <div class="drag-text">
+                            <h3>Drag and drop a file or select add Image</h3>
+                        </div>
+                    </div>
+                
+                    <div class="file-upload-preview">
+                        <img class="file-upload-image" src="#" alt="your image" />
+                        <div class="file-upload-remove">
+                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
+                                    class="image-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                
+                </div>
+                <!--<div class="image">
+                    <input type="file" name="file" accept=".jpg, .jpeg, .png">
+                    <br><br>
+                    <img id="preview" src="" alt="Preview Image"
+                        style="display: none; max-width: 300px; max-height: 300px;">
+                    <br><br>
+                </div>-->
+                <input type="submit" value="Recognize">
+                <h1>Prediction: {{ prediction }}</h1>
+                <!-- Display additional information based on the recognized label -->
+                {% if display_name %}
+                <h2>Additional Information:</h2>
+                <p><strong>Display Name:</strong> {{ display_name }}</p>
+                <p><strong>Scientific Name:</strong> {{ scientific_name }}</p>
+                <p><strong>Common Name:</strong> {{ common_name }}</p>
+                <p><strong>Disease Treated:</strong> {{ disease_treated }}</p>
+                <p><strong>Dosage:</strong> {{ dosage }}</p>
+                {% endif %}
+
+            </div>
+        </form>
+
+
+    </div>
+<div class="footer-basic">
+    <footer>
+        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a
+                href="#"><i class="icon ion-social-facebook"></i></a></div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Dr Green supported by Google ML Developer Programs team © 2023</p>
+    </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.querySelector('input[type="file"]').addEventListener('change', function () {
+            const preview = document.querySelector('#preview');
+            const file = this.files[0];
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function () {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+
+            });
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+
+</html>

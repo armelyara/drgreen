@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "traffic-day",
+  "private_key_id": "85601f454ff643a53d26c9e1d8d9101293199a8e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC74rQ4vl4rsZNq\nUcFuLXe3qxSpKEWQh7EU+o2rXhYe93X6eGueeAgwVJNYtbrkUBLAQ/6PjIf/bDyN\neZ6L+39uoxR5Wk0aYrFNkjajiwvW1bURhndvUFryTB42QRuvlt6ZLq738ZT51y15\nHEQc/0/MfBorw2TF4TWmWUzZ+u0L6BBtsgHMrGlthC8DvbbvDg9jf2BShxRnOW9J\n19zxMNOHIMe+DVCkgv06fT4Tqa1Siy37RnsAKJP2wZ8jRABebPDDM8fgWljULW3F\nZS5GMMtTfCU1UpAh4vEx+M0QI9FARnHE0lnnZN8f85G1hg8ioxlR/yaDqk6XstzU\nQ0ZtAoB3AgMBAAECggEAEHg6xb9DlanvGwKdUEanuA/E87UQ2q6tAlfvmOYvozmc\nURSYPnUVfAMV7XtKAt8qsvQ4OXt0pRpm+RyASOixZCXjKBDB3H5qk2Wt6Mp0rbmL\nB0UVwsoKRt4O8euQJ+VeOuhMNHYr/HX1Hv4wJv3nEAI68GYkNx0Fl8DmizRt7hKc\nQ2C1gBQgTEeGxronuir4Jr/qpbjbB9eYYMUrmrbmb/lffi+RUea/HpnDnqH1AXHO\ngCLeghvY7l3cm1+5Ck/fkaNSMWssNscN5lVimVr4PhxFCOreHAej/JW/AUrlUmtr\nS+B2izDAsh8Rs7MbuNEnHsGenCOYwZOgyc+LoIp5zQKBgQDpkjT8ejZXg1j3H427\nrAYFGxKGqROzlvASOLjWL473vAs7AcTqN60UqNY5weYuHpt0pEY66DS4AXZFBaO7\nS7/dNwvGhtg8mlnQJ7pOd3lbQPlD25AUuPLLszBiLifkU/gR++AgGVFa9XKfpyL0\nA9uHU7Kmngblk6xUEsS8bWx7SwKBgQDN7Wz75jrYbynyIik7f4PoXnrxm5HPXrkC\nvRzXTZ9112+taz6Yo+VoWWfgu+YjM7jTiYwZ4BnPKM8/pn9qsGBrqRTu1LpAj5D+\nz2Sl2+lEsf1pSRF3dLapOYQdeiq/VGn8Q+rvoerKuGnqOyaFMCJxJd+1PaVj9Sly\naxL6JEVIBQKBgB2NZi7bt6xy7fq2f1RTe5+BwWJQWjHK0y07CAfxlIE7xZ/9pVCN\nItUOV6yPH/SN4tVrQ4eIgcMWTESHZiP4fZobsN25ifqA/QQdQrFS5IPrQJ6ZVS2K\nCQ5E6cZCWMHG7gg4ei8VhPmhPJN+ril5o3kH2f7C19SMTq2Egmfk4GjpAoGAY2O3\nmTC6sCGfHiWMvxHBiZKoRhpu2qZ+Jys9U1E8qHStiwba9HMOUznroBUwc0cQatDV\nVNvLuSeaN79Vehncv7mgx9DWgDiKo+FXU5H7WVOK2pkQnBYx3yVKdau0HBpS+RWS\nu8vrdaJiRFH+OoRL6057VY+GVuNJ+NZjF2YQJj0CgYBRESzwtSdhYUfCwhm83y4M\nAvynVhSwReq1bLtIDEoIPpXkakEZSyG5l+yqHYN4w74mc+nG7pLpWqRuzdekavqi\nfPz3CqD0umkHHcvjfL4nUFZ42RCXXAQdCsMhjjCcHNqFcCYlwcJvEas1gy0eYk94\nSr3NlJ3rgPGZ67+TTw07EA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "drgreen@traffic-day.iam.gserviceaccount.com",
+  "client_id": "105441134974744393940",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/drgreen%40traffic-day.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
