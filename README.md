@@ -10,7 +10,7 @@ The current dataset contain 1107 images sharing in four class of medicinal plant
 - Carica(Papaya Leaf)
 - Combrethum micranthum(Kinkeliba)
 - Psidium guajava(Goyave)
-  ![image](app/app/static/Confusion matrix.png) 
+  ![app/app/static/Confusion matrix.png](https://github.com/armelyara/drgreen/blob/main/app/app/static/Confusion%20matrix.png)
 
 # ML model
 ML model is about regression logistic for multi-class classification problem. So, our ML model are built, trained and deployed on **Vertex AI**. For online prediction, Ml Model have an endpoint using in the **Flask API** . 
