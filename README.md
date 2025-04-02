@@ -1,9 +1,10 @@
 # Dr Green
-Dr Green is a Machine Learning model which recognize medical plant for traditionnal medicine. I built a flask web app to allow plant recognition with 0.99% of accuracy. Google ML Developer Programs team supported this work by providing Google Cloud Credit.
+Dr Green is a Machine Learning model which recognize medical plant for traditional medicine. I built a flask web app to allow plant recognition with 0.99% of accuracy. Google ML Developer Programs team supported this work by providing Google Cloud Credit.
 ![002-removebg-preview.png](https://github.com/armelyara/drgreen/blob/main/002-removebg-preview.png)
 
 # Description
-Using the medicinal plants in the desease heal process take a particular place into africans habits. This habit is transmited throught generations by the elders. The traditionnal medicine is so important such as we need to save his process of use the medicinal plants for the next generations. **Dr Green** aims to recognize the whole plants used in the desease heal process by the traditionnal medicine and work as a big digital librairie for research and educational.   
+Using the medicinal plants in the disease heal process take a particular place into africans habits. This habit is transmitted through generations by the elders. The traditional medicine is so important such as we need to save his process of use the medicinal plants for the next generations. **Dr Green** aims to recognize the whole plants used in the disease heal process by the traditional medicine and work as a big digital librairie for research and educational.
+   
 
 # Dataset
 The current dataset contain 1107 images sharing in four class of medicinal plants. The class are labeled like this: 
