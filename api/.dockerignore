@@ -1,0 +1,26 @@
+# Dr Green API - Docker ignore file
+
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.git
+.gitignore
+.env
+.venv
+venv/
+ENV/
+README.md
+*.md
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
