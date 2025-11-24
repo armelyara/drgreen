@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// Modèle de données pour une plante médicinale
 class Plant {
@@ -24,12 +23,14 @@ class Plant {
     this.statut = 'approuve',
   });
 
-  /// Créer une plante depuis Firestore
-  factory Plant.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+  /// Créer une plante depuis une Map (Firestore ou Mock)
+  factory Plant.fromFirestore(dynamic doc) {
+    // Handle both DocumentSnapshot (if we were using it) and Map (for mocks)
+    final data = (doc is Map) ? doc : (doc.data() as Map<String, dynamic>);
+    final id = (doc is Map) ? (doc['id'] ?? '') : doc.id;
 
     return Plant(
-      id: doc.id,
+      id: id,
       nomScientifique: data['nom_scientifique'] ?? '',
       nomsCommuns: Map<String, String>.from(data['noms_communs'] ?? {}),
       regionsCi: List<String>.from(data['regions_ci'] ?? []),
@@ -37,10 +38,25 @@ class Plant {
         data['usages_traditionnels'] ?? {},
       ),
       imagesUrls: List<String>.from(data['images_urls'] ?? []),
-      dateAjout: (data['date_ajout'] as Timestamp).toDate(),
+      // Handle Timestamp or String or DateTime
+      dateAjout: _parseDate(data['date_ajout']),
       auteurId: data['auteur_id'] ?? '',
       statut: data['statut'] ?? 'approuve',
     );
+  }
+
+  static DateTime _parseDate(dynamic date) {
+    if (date == null) return DateTime.now();
+    if (date is DateTime) return date;
+    // If it was a Timestamp, we can't import it, so we assume it might be passed as something else in mock
+    // or if we really needed to handle Timestamp we'd need a dynamic check.
+    // For mock mode, we'll assume it's DateTime or we just return now.
+    try {
+        // Attempt to call toDate() dynamically if it's a Timestamp object
+        return (date as dynamic).toDate();
+    } catch (e) {
+        return DateTime.now();
+    }
   }
 
   /// Convertir en Map pour Firestore
@@ -51,7 +67,7 @@ class Plant {
       'regions_ci': regionsCi,
       'usages_traditionnels': usagesTraditionnels.toMap(),
       'images_urls': imagesUrls,
-      'date_ajout': Timestamp.fromDate(dateAjout),
+      'date_ajout': dateAjout, // Store as DateTime for mock
       'auteur_id': auteurId,
       'statut': statut,
     };

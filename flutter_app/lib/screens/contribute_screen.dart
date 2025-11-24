@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 
 import '../utils/theme.dart';
 import '../models/plant.dart';
 import '../services/auth_service.dart';
 import '../services/firestore_service.dart';
+import '../services/storage_service.dart';
 
 /// Écran de contribution - Ajouter une nouvelle plante
 class ContributeScreen extends StatefulWidget {
@@ -486,18 +487,17 @@ class _ContributeScreenState extends State<ContributeScreen> {
     try {
       final authService = context.read<AuthService>();
       final firestoreService = context.read<FirestoreService>();
+      final storageService = context.read<StorageService>();
 
-      // Upload images to Firebase Storage
+      // Upload images using StorageService
       final List<String> imageUrls = [];
       for (int i = 0; i < _selectedImages.length; i++) {
         final file = _selectedImages[i];
-        final ref = FirebaseStorage.instance
-            .ref()
-            .child('contributions')
-            .child('${DateTime.now().millisecondsSinceEpoch}_$i.jpg');
-
-        await ref.putFile(file);
-        final url = await ref.getDownloadURL();
+        final url = await storageService.uploadPlantImage(
+          file,
+          'contribution_${DateTime.now().millisecondsSinceEpoch}',
+          isContribution: true,
+        );
         imageUrls.add(url);
       }
 
@@ -524,7 +524,7 @@ class _ContributeScreenState extends State<ContributeScreen> {
         ),
         imagesUrls: imageUrls,
         dateAjout: DateTime.now(),
-        auteurId: authService.currentUser!.uid,
+        auteurId: (user as Map)['uid'],
         statut: 'en_attente',
       );
 
