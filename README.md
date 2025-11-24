@@ -269,4 +269,4 @@ Projet Dr Green - Bibliothèque Collaborative de la Botanique Africaine
 
 ---
 
-**Fait avec 💚 pour préserver les savoirs traditionnels africains**
+**Développé par Armel Yara pour The Day Info**
