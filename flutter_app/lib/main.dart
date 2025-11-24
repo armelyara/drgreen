@@ -7,6 +7,8 @@ import 'utils/theme.dart';
 import 'services/auth_service.dart';
 import 'services/firestore_service.dart';
 import 'services/api_service.dart';
+import 'services/mock_auth_service.dart';
+import 'services/mock_firestore_service.dart';
 import 'screens/home_screen.dart';
 import 'screens/library_screen.dart';
 import 'screens/contribute_screen.dart';
@@ -16,7 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Firebase
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
 
   runApp(const DrGreenApp());
 }
@@ -28,8 +30,8 @@ class DrGreenApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AuthService>(create: (_) => AuthService()),
-        Provider<FirestoreService>(create: (_) => FirestoreService()),
+        Provider<AuthService>(create: (_) => MockAuthService()),
+        Provider<FirestoreService>(create: (_) => MockFirestoreService()),
         Provider<ApiService>(create: (_) => ApiService()),
       ],
       child: MaterialApp(
