@@ -524,9 +524,7 @@ class _ContributeScreenState extends State<ContributeScreen> {
         ),
         imagesUrls: imageUrls,
         dateAjout: DateTime.now(),
-        dateAjout: DateTime.now(),
         auteurId: (authService.currentUser as Map)['uid'],
-        statut: 'en_attente',
         statut: 'en_attente',
       );
 
