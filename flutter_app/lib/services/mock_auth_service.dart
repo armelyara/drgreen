@@ -1,33 +1,40 @@
 import 'auth_service.dart';
 
 class MockAuthService implements AuthService {
-  @override
-  dynamic get currentUser => null; // Utilisateur anonyme par défaut
+  dynamic _currentUser;
 
   @override
-  Stream<dynamic> get authStateChanges => Stream.value(null);
+  dynamic get currentUser => _currentUser;
+
+  @override
+  Stream<dynamic> get authStateChanges => Stream.value(_currentUser);
+
+  MockAuthService() {
+    // Uncomment to start logged in
+    // _currentUser = {'uid': 'mock_uid', 'email': 'test@drgreen.com'};
+  }
 
   @override
   Future<dynamic> signUp({required String email, required String password}) async {
-    // Return a dummy object
-    return {'user': {'uid': 'mock_uid', 'email': email}};
+    _currentUser = {'uid': 'mock_uid', 'email': email};
+    return {'user': _currentUser};
   }
 
   @override
   Future<dynamic> signIn({required String email, required String password}) async {
-    // Return a dummy object
-    return {'user': {'uid': 'mock_uid', 'email': email}};
+    _currentUser = {'uid': 'mock_uid', 'email': email};
+    return {'user': _currentUser};
   }
 
   @override
   Future<dynamic> signInAnonymously() async {
-    // Return a dummy object
-    return {'user': {'uid': 'mock_uid', 'isAnonymous': true}};
+    _currentUser = {'uid': 'mock_uid', 'isAnonymous': true};
+    return {'user': _currentUser};
   }
 
   @override
   Future<void> signOut() async {
-    // No-op
+    _currentUser = null;
   }
 
   @override
