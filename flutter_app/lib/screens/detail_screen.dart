@@ -27,39 +27,80 @@ class DetailScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   shadows: [
                     Shadow(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withOpacity(0.8),
                       blurRadius: 8,
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
               ),
-              background: plant.imagesUrls.isNotEmpty
-                  ? CachedNetworkImage(
-                      imageUrl: plant.imagesUrls.first,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Container(
-                        color: AppColors.greyLight,
-                        child: const Center(
-                          child: CircularProgressIndicator(),
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Image or Fallback Gradient
+                  plant.imagesUrls.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: plant.imagesUrls.first,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(
+                            color: AppColors.greyLight,
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Container(
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  AppColors.primary,
+                                  AppColors.secondary,
+                                ],
+                              ),
+                            ),
+                            child: const Icon(
+                              Icons.local_florist,
+                              size: 64,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      : Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                AppColors.primary,
+                                AppColors.secondary,
+                              ],
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.local_florist,
+                            size: 100,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      errorWidget: (context, url, error) => Container(
-                        color: AppColors.greyLight,
-                        child: const Icon(
-                          Icons.local_florist,
-                          size: 64,
-                          color: AppColors.greyMedium,
-                        ),
-                      ),
-                    )
-                  : Container(
-                      color: AppColors.primary.withOpacity(0.2),
-                      child: const Icon(
-                        Icons.local_florist,
-                        size: 100,
-                        color: AppColors.primary,
+                  
+                  // Gradient Overlay for text readability
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          Colors.black.withOpacity(0.2),
+                          Colors.black.withOpacity(0.7),
+                        ],
+                        stops: const [0.6, 0.8, 1.0],
                       ),
                     ),
+                  ),
+                ],
+              ),
             ),
           ),
 
