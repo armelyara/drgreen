@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/theme.dart';
 import '../models/plant.dart';
@@ -168,7 +169,7 @@ class DetailScreen extends StatelessWidget {
                       spacing: 8,
                       runSpacing: 8,
                       children: plant.regionsCi
-                          .map((region) => Chip(
+                          .map((region) => ActionChip(
                                 label: Text(
                                   region,
                                   style: GoogleFonts.poppins(
@@ -180,6 +181,26 @@ class DetailScreen extends StatelessWidget {
                                 side: BorderSide(
                                   color: AppColors.accent.withOpacity(0.3),
                                 ),
+                                onPressed: () async {
+                                  final query = Uri.encodeComponent('$region, Côte d\'Ivoire');
+                                  final url = Uri.parse('https://www.google.com/maps/search/?api=1&query=$query');
+                                  
+                                  try {
+                                    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(content: Text('Impossible d\'ouvrir la carte')),
+                                        );
+                                      }
+                                    }
+                                  } catch (e) {
+                                    if (context.mounted) {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(content: Text('Erreur: $e')),
+                                      );
+                                    }
+                                  }
+                                },
                               ))
                           .toList(),
                     ),
